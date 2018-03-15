@@ -33,11 +33,16 @@ public class ServiciosAlquilerTest {
     public ServiciosAlquilerTest() {
         ServiciosAlquiler sa=ServiciosAlquilerFactory.getInstance().getServiciosAlquilerTesting();
     }
+<<<<<<< HEAD
     @Before
+=======
+    /*@Before
+>>>>>>> 9933958eebeb3be1440aefd1fdce43909a745a05
     public void setUp() {
     }
     @Test
     public void emptyDB() {
+<<<<<<< HEAD
         ServiciosAlquiler sa=ServiciosAlquilerFactory.getInstance().getServiciosAlquilerTesting();
         qt().forAll(integers().allPositive()).check((id) -> {
             boolean r = false;
@@ -49,6 +54,13 @@ public class ServiciosAlquilerTest {
                 } else{
                     System.out.println("#");
                 }
+=======
+        qt().forAll(integers().allPositive()).check((id) -> {
+            boolean r = false;
+            try {
+                
+                Cliente cliente = sa.consultarCliente(id);
+>>>>>>> 9933958eebeb3be1440aefd1fdce43909a745a05
             } catch(ExcepcionServiciosAlquiler e) {
                 r = true;
             } catch(IndexOutOfBoundsException e) {
