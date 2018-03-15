@@ -33,7 +33,7 @@ public class ServiciosAlquilerTest {
     public ServiciosAlquilerTest() {
         ServiciosAlquiler sa=ServiciosAlquilerFactory.getInstance().getServiciosAlquilerTesting();
     }
-    @Before
+    /*@Before
     public void setUp() {
     }
     @Test
