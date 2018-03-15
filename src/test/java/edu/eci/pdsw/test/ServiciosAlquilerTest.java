@@ -48,6 +48,7 @@ public class ServiciosAlquilerTest {
                 Cliente cliente = sa.consultarCliente(id);
                 if (cliente==null){
                     r=true;
+                    
                 } 
             } catch(ExcepcionServiciosAlquiler e) {
                 r = true;
