@@ -1,41 +1,58 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3c.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" 
-     xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>lab07 </h:head>
+<!DOCTYPE xhtml>
+<xhtml xmlns="http://www.w3c.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui" 
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head> </h:head>
     <h:body>
-        <h:form id="bloque">
-            <p:dataTable id="tabla" var="itemRentado" value="#{AlquilerItems.clienteSeleccionado.rentados}" 
-                          rowKey="#{ItemRentado.item.nombre}" >
+        <h:form id="bloque" >
+            <p:dataTable id="tabla" var="cliente" value="#{AlquilerItems.sp.consultarClientes()}" selectionMode="single"
+                         selection="#{AlquilerItems.clienteSeleccionado}" rowKey="#{cliente.documento}" >
                 <f:facet name="header">
-                   Registro de Alquileres
+                    Lista de Clientes
                 </f:facet>
-                
-                <p:column>
+                <p:column  >
+
                     <f:facet name="header">
-                       Items no regresados 
+                        Documento 
                     </f:facet>
-                    #{itemRentado.item.nombre}
+                   <h:commandLink action="#{AlquilerItems.setClienteSeleccionado(cliente)}" immediate="true" >
+              <f:ajax render="@form"/>
+                   <h:outputText id="login"
+                           value=" #{cliente.documento}"/>
+                 </h:commandLink>
+
                 </p:column>
                 <p:column headerText="" >
                     <f:facet name="header">
-                        Multa
+                        Nombre
                     </f:facet>
-                    #{itemRentado.multa}
+                    #{cliente.nombre}
                 </p:column>
-             </p:dataTable>
+                <p:column headerText="" >
+                    <f:facet name="header">
+                        e-mail
+                    </f:facet>
+                    #{cliente.email}
+                </p:column><br/><br/>
+
+            </p:dataTable><br/><br/>
+            <p:button outcome="RegistroClienteItem"  value="Consultar cliente seleccionado"  ></p:button><br/><br/>
+            <p:outputLabel value="Agregar nuevo cliente " /><br/><br/><br/>
+            <p:outputLabel for="identificacion" value="Identificacion: " />
+            <p:inputText id="identificacion" value="#{AlquilerItems.doc}" required="true" /><br/><br/>
+            <p:outputLabel for="nombre" value="Nombre: " />
+            <p:inputText id="nombre" value="#{AlquilerItems.nom}" required="true"/><br/><br/>
+            <p:outputLabel for="direccion" value="Direccion: " />
+            <p:inputText id="direccion" value="#{AlquilerItems.dir}" required="true"/><br/><br/>
+            <p:outputLabel for="telefono" value="Telefono: " />
+            <p:inputText id="telefono" value="#{AlquilerItems.tel}" required="true"/><br/><br/>
+            <p:outputLabel for="email" value="Email: " />
+            <p:inputText id="email" value="#{AlquilerItems.em}" required="true"/><br/><br/>
+            <p:commandButton value="Agregar" id="ajax" update="bloque" actionListener="#{AlquilerItems.buttonListener()}" styleClass="ui-priority-primary" />
+        </h:form>
 
 
-            <p:outputLabel value="Agregar nuevo alquiler " />
-            <p:outputLabel for="id" value="Codigo de item: " />
-            <p:inputText id="id" value="#{AlquilerItems.itemId}" required="true" />
-            <p:outputLabel for="dias" value="Dias de alquiler: " />
-            <p:inputText id="dias" value="#{AlquilerItems.dias}" required="true"/>
 
-
-
-            <p:commandButton value="Agregar Alquiler" id="ajax" update="bloque" ajax="false" actionListener="#{AlquilerItems.buttonListener1()}" styleClass="ui-priority-primary" />   
-        </h:form>>
     </h:body>
-</html>
+</xhtml>
